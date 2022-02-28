@@ -24,7 +24,7 @@ public:
             temp=temp->next;
         }
         k=k%len;
-        if(k==0||len==0 || len == 1){
+        if(k==0){
             return head;
         }
         temp=head;
