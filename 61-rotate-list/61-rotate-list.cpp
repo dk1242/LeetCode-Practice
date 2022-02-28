@@ -15,22 +15,25 @@ public:
         if(!head || !head->next){
             return head;
         }
-        ListNode*temp=head;
+        ListNode* temp=head, *last;
         while(temp){
+            if(temp->next==NULL){
+                last=temp;
+            }
             len++;
             temp=temp->next;
         }
         k=k%len;
-        while(k--){
-            temp=head;
-            while(temp->next->next){
-                temp=temp->next;
-            }
-            // cout<<temp->val;
-            temp->next->next=head;
-            head=temp->next;
-            temp->next=NULL;
+        if(k==0||len==0 || len == 1){
+            return head;
         }
-        return head;
+        temp=head;
+        for(int i=0;i<len-k-1;i++){
+            temp=temp->next;
+        }
+        ListNode* temp2=temp->next;
+        temp->next=NULL;
+        last->next=head;
+        return temp2;
     }
 };
