@@ -14,6 +14,7 @@ public:
             slow=slow->next;
             fast=fast->next->next;
             if(slow==fast){
+                cout<<slow->val;
                 while(slow!=entry){
                     slow=slow->next;
                     entry=entry->next;
