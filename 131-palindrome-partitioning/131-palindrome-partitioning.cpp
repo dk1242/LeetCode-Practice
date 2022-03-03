@@ -14,6 +14,7 @@ public:
             return;
         }
         for(int i=start;i<n;i++){
+            // cout<<s.substr(start, i-start+1)<<" ";
             if(isPalindrome(s, start, i)){
                 curr.push_back(s.substr(start, i-start+1));
                 allpart(all, curr, i+1, n, s);
