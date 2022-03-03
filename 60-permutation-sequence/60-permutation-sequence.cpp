@@ -18,11 +18,10 @@ public:
         fact/=n;
         string ans="";
         k--;
-        while(1){
+        for(int i=1;i<n+1;i++){
             ans+=to_string(nums[k/fact]);
             nums.erase(nums.begin()+k/fact);
-            if(!nums.size())
-                break;
+            if(!nums.size())break;
             k=k%fact;
             fact/=nums.size();
         }
