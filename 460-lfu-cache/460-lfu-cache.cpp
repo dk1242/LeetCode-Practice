@@ -1,7 +1,6 @@
 class LFUCache {
 public:
     list<pair<int, int>>l;
-    unordered_map<int,pair<int, int>> mp; // key-> list
     unordered_map<int, pair<int, int>>m; // key -> {val, freq}
     unordered_map<int,list<int>> freq; // freq-> list
     int minFreq=0, size, maxSize;
@@ -12,7 +11,7 @@ public:
     }
     
     int get(int key) {
-        if(mp.find(key)==mp.end())
+        if(m.find(key)==m.end())
             return -1;
         freq[m[key].second].remove(key);
         m[key].second++;
@@ -31,13 +30,11 @@ public:
         }
         if(size>=maxSize){
             m.erase(freq[minFreq].back());
-            mp.erase(freq[minFreq].back());
             freq[minFreq].pop_back();
             size--;
         }
         m[key]={value, 1};
         freq[1].push_front(key);
-        mp[key]={key, value};
         minFreq=1;
         size++;
     }
