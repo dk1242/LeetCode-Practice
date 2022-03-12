@@ -4,6 +4,9 @@ public:
     unordered_map<int,list<pair<int, int>>::iterator> mp;
     int size;
     LRUCache(int capacity) {
+        ios_base::sync_with_stdio(0);
+        cin.tie(0);
+        cout.tie(0);
         size=capacity;
     }
     
