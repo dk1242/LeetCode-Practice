@@ -22,22 +22,52 @@ public:
     // }
     vector<int> inorderTraversal(TreeNode *root)
     {
-        vector<int> res;
-        stack<TreeNode *> st;
-        TreeNode *curr = root;
-        // st.push(root);
-        while (curr || !st.empty())
+       // vector<int> res;
+    // stack<TreeNode *> st;
+    // TreeNode *curr = root;
+    // // st.push(root);
+    // while (curr || !st.empty())
+    // {
+    //     while (curr)
+    //     {
+    //         st.push(curr);
+    //         curr = curr->left;
+    //     }
+    //     curr = st.top();
+    //     st.pop();
+    //     res.push_back(curr->val);
+    //     curr = curr->right;
+    // }
+    // return res;
+    vector<int> res;
+    TreeNode *curr = root;
+    while (curr)
+    {
+        if (curr->left == NULL)
         {
-            while (curr)
+            res.push_back(curr->val);
+            curr = curr->right;
+        }
+        else
+        {
+            TreeNode *prev = curr->left;
+            while (prev->right && prev->right != curr)
             {
-                st.push(curr);
+                prev = prev->right;
+            }
+            if (prev->right == NULL)
+            {
+                prev->right = curr;
                 curr = curr->left;
             }
-            curr=st.top();
-            st.pop();
-            res.push_back(curr->val);
-            curr=curr->right;
+            else
+            {
+                prev->right = NULL;
+                res.push_back(curr->val);
+                curr = curr->right;
+            }
         }
-        return res;
+    }
+    return res;
     }
 };
