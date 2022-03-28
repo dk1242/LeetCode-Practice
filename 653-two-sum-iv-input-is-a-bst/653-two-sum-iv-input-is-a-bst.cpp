@@ -11,17 +11,20 @@
  */
 class Solution {
 public:
-    bool search(TreeNode* root, int k, unordered_set<int>&st){
+    bool dfs(TreeNode* root, int k, TreeNode* cur){
+        if(cur==NULL)
+            return false;
+        return search(root, k-cur->val, cur) || dfs(root, k, cur->left) || dfs(root, k, cur->right);
+    }
+    bool search(TreeNode* root, int val, TreeNode* cur){
         if(root==NULL)
             return false;
-        if(st.count(k-root->val)){
-            return true;
-        }
-        st.insert(root->val);
-        return search(root->left, k, st)||search(root->right, k, st);
+        return (root->val == val) && (root != cur) 
+            || (root->val < val) && search(root->right,val, cur) 
+                || (root->val > val) && search(root->left, val, cur);
     }
     bool findTarget(TreeNode* root, int k) {
-        unordered_set<int>st;
-        return search(root, k, st);
+        // unordered_set<int>st;
+        return dfs(root, k, root);
     }
 };
