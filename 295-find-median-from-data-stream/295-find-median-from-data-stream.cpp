@@ -8,17 +8,20 @@ public:
     }
     
     void addNum(int num) {
-       if(left.size()==right.size()){
-           left.push(num);
-           int rt=left.top();
-           left.pop();
-           right.push(rt);
-        }else{
+       if(left.empty() && right.empty()){
            right.push(num);
-           int lt=right.top();
-           right.pop();
-           left.push(lt);
-        }
+       }else{
+           if(num<=right.top()){
+               left.push(num);
+           }else right.push(num);
+           if(left.size()-right.size()==2){
+               right.push(left.top());
+               left.pop();
+           }else if(right.size()-left.size()==2){
+               left.push(right.top());
+               right.pop();
+           }
+       }
     }
     
     double findMedian() {
@@ -28,7 +31,9 @@ public:
             // cout<<double(left.top()+right.top())/2<<"!";
             return double(left.top()+right.top())/2;
         }else{
+            if(right.size()>left.size())
             return double(right.top());
+            else return  double(left.top());
         }
     }
 };
