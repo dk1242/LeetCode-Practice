@@ -14,11 +14,15 @@ public:
     TreeNode* searchBST(TreeNode* root, int val) {
         if(root==NULL)
             return root;
-        if(root->val==val)
-            return root;
-        if(root->val>val){
-            return searchBST(root->left, val);
+        TreeNode*temp=root;
+        while(temp){
+        if(temp->val==val)
+            return temp;
+        if(temp->val>val){
+            temp=temp->left;
         }else
-            return searchBST(root->right, val);
+            temp=temp->right;
+        }
+        return temp;
     }
 };
