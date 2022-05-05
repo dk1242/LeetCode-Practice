@@ -1,35 +1,35 @@
 class MyStack {
 public:
     queue<int>q1, q2;
-    stack<int>st;
     MyStack() {
         
     }
     
     void push(int x) {
-        st.push(x);
+        q1.push(x);
     }
     
     int pop() {
-        int t;
-        if(!st.empty()){
-            t=st.top();
-            st.pop();
+        while(q1.size()>1){
+            q2.push(q1.front());
+            // cout<<q2.front();
+            q1.pop();
         }
-        else t=-1;
-        return t;
-        
+        int tmp=q1.front();
+        q1.pop();
+        swap(q1, q2);
+        // cout<<tmp;
+        return tmp;
     }
     
     int top() {
-        if(!st.empty())
-            return st.top();
+        if(!q1.empty())
+            return q1.back();
         return -1;
     }
     
     bool empty() {
-        // cout<<st.top();
-        return st.empty();
+        return q1.empty();
     }
 };
 
