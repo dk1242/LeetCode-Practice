@@ -10,11 +10,11 @@ public:
                 temp.push_back(1);
                 res.push_back(temp);
             }else{
-                temp1=temp;
-                for(int i=1;i<temp.size();i++){
-                    temp[i]=temp1[i]+temp1[i-1];
-                }
+                // temp1=temp;
                 temp.push_back(1);
+                for(int i=temp.size()-2;i>0;i--){
+                    temp[i]=temp[i]+temp[i-1];
+                }
                 res.push_back(temp);
             }
         }
