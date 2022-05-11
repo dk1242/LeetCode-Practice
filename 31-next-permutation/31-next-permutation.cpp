@@ -25,6 +25,6 @@ public:
         // for(int i=ind;i<end;i++){
             swap(nums[ind], nums[end]);
         // }
-        reverse(nums.begin()+ind+1, nums.end());
+        sort(nums.begin()+ind+1, nums.end());
     }
 };
