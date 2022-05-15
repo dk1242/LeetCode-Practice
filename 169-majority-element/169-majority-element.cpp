@@ -1,14 +1,14 @@
 class Solution {
 public:
     int majorityElement(vector<int>& nums) {
-        int ans, count=0;
+        int count=0, ans;
         for(auto it:nums){
             if(count==0){
                 ans=it;
             }
-            if(it==ans){
+            if(it==ans)
                 count++;
-            }else count--;
+            else count--;
         }
         return ans;
     }
