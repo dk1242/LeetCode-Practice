@@ -1,28 +1,28 @@
 class Solution {
 public:
     vector<int> majorityElement(vector<int>& nums) {
-        int c1=0, c2=0, a=0, b=0;
-        for(auto &n:nums){
-            if(a==n){
+        int c1=0, c2=0, a,b;
+        for(auto it:nums){
+            if(it==a){
                 c1++;
-            }else if(b==n){
+            }else if(it==b){
                 c2++;
             }else if(c1==0){
-                a=n;
+                a=it;
                 c1++;
             }else if(c2==0){
-                b=n;
+                b=it;
                 c2++;
-            }else{
-                c1--;
-                c2--;
+            }else {
+                c1--, c2--;
             }
         }
         c1=0, c2=0;
-        for(auto &n:nums){
-            if(a==n)
+        for(auto it:nums){
+            if(it==a)
                 c1++;
-            else if(b==n) c2++;
+            else if(it==b)
+                c2++;
         }
         vector<int>res;
         if(c1>nums.size()/3)res.push_back(a);
