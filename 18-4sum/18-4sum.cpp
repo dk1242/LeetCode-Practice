@@ -1,32 +1,30 @@
 class Solution {
 public:
     vector<vector<int>> fourSum(vector<int>& nums, int target) {
-        vector<vector<int>>res;
         int n=nums.size();
+        vector<vector<int>>res;
+        
         sort(nums.begin(), nums.end());
         for(int i=0;i<n;i++){
-            int target1=target-nums[i];
             for(int j=i+1;j<n;j++){
-                int target2=target1-nums[j];
-                int front=j+1, back=n-1;
-                while(front<back){
-                    int sum=nums[front]+nums[back];
-                    // cout<<sum;
-                    if(sum==target2){
-                        // cout<<sum;
-                        vector<int>ans;
-                        ans.push_back(nums[i]);
-                        ans.push_back(nums[j]);
-                        ans.push_back(nums[front]);
-                        ans.push_back(nums[back]);
-                        res.push_back(ans);
-                        while(front<back && nums[front]==ans[2])front++;
-                        while(front<back && nums[back]==ans[3])back--;
-                    }else if(sum<target2){
-                        front++;
-                    }else back--;
+                int t=target-nums[i]-nums[j];
+                int l=j+1, r=n-1;
+                while(l<r){
+                    if(nums[l]+nums[r]==t){
+                        vector<int>temp;
+                        temp.push_back(nums[i]);
+                        temp.push_back(nums[j]);
+                        temp.push_back(nums[l]);
+                        temp.push_back(nums[r]);
+                        res.push_back(temp);
+                        while(l<r && nums[l]==temp[2])l++;
+                        while(l<r && nums[r]==temp[3])r--;
+                        
+                    }else if(nums[l]+nums[r]<t){
+                        l++;
+                    }else r--;
                 }
-                while(j + 1 < n && nums[j + 1] == nums[j]) ++j;
+                while(j+1<n && nums[j+1]==nums[j])j++;
             }
             while(i+1<n && nums[i+1]==nums[i])i++;
         }
