@@ -5,17 +5,17 @@
 <p>&nbsp;</p>
 <p><strong>Example 1:</strong></p>
 <img alt="" src="https://assets.leetcode.com/uploads/2020/09/01/node1.jpg" style="width: 300px; height: 215px;">
-<pre><strong>Input:</strong> head = [4,5,1,9], node = 5
+<pre style="position: relative;"><strong>Input:</strong> head = [4,5,1,9], node = 5
 <strong>Output:</strong> [4,1,9]
 <strong>Explanation: </strong>You are given the second node with value 5, the linked list should become 4 -&gt; 1 -&gt; 9 after calling your function.
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p><strong>Example 2:</strong></p>
 <img alt="" src="https://assets.leetcode.com/uploads/2020/09/01/node2.jpg" style="width: 300px; height: 236px;">
-<pre><strong>Input:</strong> head = [4,5,1,9], node = 1
+<pre style="position: relative;"><strong>Input:</strong> head = [4,5,1,9], node = 1
 <strong>Output:</strong> [4,5,9]
 <strong>Explanation: </strong>You are given the third node with value 1, the linked list should become 4 -&gt; 5 -&gt; 9 after calling your function.
-</pre>
+<div class="open_grepper_editor" title="Edit &amp; Save To Grepper"></div></pre>
 
 <p>&nbsp;</p>
 <p><strong>Constraints:</strong></p>
