@@ -18,9 +18,12 @@ public:
         if(original==target){
             return cloned;
         }
-        TreeNode* res=getTargetCopy(original->left, cloned->left, target);
-        if(res==NULL)
-            res=getTargetCopy(original->right, cloned->right, target);
-        return res;
+        TreeNode* lt=getTargetCopy(original->left, cloned->left, target);
+        TreeNode* rt=getTargetCopy(original->right, cloned->right, target);
+        if(lt)
+            return lt;
+        else if(rt)
+            return rt;
+        return NULL;
     }
 };
