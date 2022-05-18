@@ -31,21 +31,23 @@
 class Solution {
 public:
     vector<vector<int>> criticalConnections(int n, vector<vector<int>>& connections) {
+        vector<int> disc, low;
         disc = vector<int>(n,0);
         low = vector<int>(n, 0);
         vector<vector<int>> ans;
+        unordered_map<int, vector<int>> edgeMap;
         for (auto conn : connections) {
             edgeMap[conn[0]].push_back(conn[1]);
             edgeMap[conn[1]].push_back(conn[0]);
         }
-        dfs(0, -1, ans);
+        dfs(0, -1, ans, disc, low, edgeMap);
         return ans;
     }
-    void dfs(int curr, int prev, vector<vector<int>> &ans) {
+    void dfs(int curr, int prev, vector<vector<int>> &ans, vector<int> &disc, vector<int>&low, unordered_map<int, vector<int>> &edgeMap) {
         disc[curr] = low[curr] = time++;
         for (int next : edgeMap[curr]) {
             if (disc[next] == 0) {
-                dfs(next, curr, ans);
+                dfs(next, curr, ans, disc, low, edgeMap);
                 low[curr] = min(low[curr], low[next]);
             } else if (next != prev)
                 low[curr] = min(low[curr], disc[next]);
@@ -54,7 +56,5 @@ public:
         }
     }
 private:
-    vector<int> disc, low;
     int time = 1;
-    unordered_map<int, vector<int>> edgeMap;
 };
