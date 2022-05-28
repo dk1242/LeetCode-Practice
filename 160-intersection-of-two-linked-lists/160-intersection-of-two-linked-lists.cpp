@@ -45,5 +45,6 @@ public:
             }
             return start;
         }
+        return NULL;
     }
 };
