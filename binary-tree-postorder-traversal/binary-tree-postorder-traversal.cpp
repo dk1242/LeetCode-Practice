@@ -20,27 +20,28 @@ public:
     }
     vector<int> postorderTraversal(TreeNode* root) {
         vector<int> res;
-        postorder(root, res);
+        // postorder(root, res);
+        // return res;
+    if (root == NULL){
         return res;
-    // if (root == NULL){
-    //     return res;
-    // }
-    // stack<TreeNode *> st;
-    // st.push(root);
-    // while (!st.empty())
-    // {
-    //     TreeNode *curr = st.top();
-    //     st.pop();
-    //     if (curr->left)
-    //     {
-    //         st.push(curr->left);
-    //     }
-    //     if (curr->right)
-    //     {
-    //         st.push(curr->right);
-    //     }
-    //     res.push_back(curr->val);
-    // }
-    // return res;
+    }
+    stack<TreeNode *> st;
+    st.push(root);
+    while (!st.empty())
+    {
+        TreeNode *curr = st.top();
+        st.pop();
+        if (curr->left)
+        {
+            st.push(curr->left);
+        }
+        if (curr->right)
+        {
+            st.push(curr->right);
+        }
+        res.push_back(curr->val);
+    }
+        reverse(res.begin(), res.end());
+    return res;
     }
 };
