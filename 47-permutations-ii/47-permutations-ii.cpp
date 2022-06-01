@@ -1,22 +1,27 @@
 class Solution {
 public:
-    void backtrack(set<vector<int>>&res, vector<int>&nums, int n, int start){
-        if(start==n-1){
-            res.insert(nums);
+    unordered_map<int,int>mp;
+    void backtrack(vector<vector<int>>&res, vector<int>&res1, vector<int>&nums, int n, int start){
+        if(start==n){
+            res.push_back(res1);
             return;
         }
-        for(int i=start;i<n;i++){
-            swap(nums[i], nums[start]);
-            backtrack(res, nums, n, start+1);
-            swap(nums[i], nums[start]);
+        for(auto &it:mp){
+            int num=it.first, count=it.second;
+            if(count==0)continue;
+            res1.push_back(num);
+            mp[num]--;
+            backtrack(res,res1, nums, n, start+1);
+            res1.pop_back();
+            mp[num]++;
         }
     }
     vector<vector<int>> permuteUnique(vector<int>& nums) {
-        set<vector<int>>res;
-        vector<vector<int>>ans;
+        vector<int>res1;
+        vector<vector<int>>res;
         int n=nums.size();
-        backtrack(res, nums, n, 0);
-        for(auto it:res)ans.push_back(it);
-        return ans;
+        for(int i=0;i<n;i++) mp[nums[i]]++;
+        backtrack(res, res1, nums, n, 0);
+        return res;
     }
 };
