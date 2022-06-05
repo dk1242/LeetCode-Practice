@@ -27,9 +27,9 @@ public:
         }
         return true;
     }
-    void solve(vector<vector<string>>&ans, vector<string>&board, int c, int n){
+    void solve(int &ans, vector<string>&board, int c, int n){
         if(c==n){
-            ans.push_back(board);
+            ans++;
             return;
         }
         for(int r=0;r<n;r++){
@@ -41,9 +41,9 @@ public:
         }
     }
     int totalNQueens(int n) {
-        vector<vector<string>>ans;
+        int ans=0;
         vector<string>board(n, string(n, '.'));
         solve(ans, board, 0, n);
-        return ans.size();
+        return ans;
     }
 };
