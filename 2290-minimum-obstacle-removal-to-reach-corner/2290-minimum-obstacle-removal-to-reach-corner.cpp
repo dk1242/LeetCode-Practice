@@ -14,6 +14,9 @@ public:
             int i=it.first, j=it.second;
             for(int k=0;k<4;k++){
                 int x=i+dir[k], y=j+dir[k+1];
+                if (x == (m-1) && y == (n-1)) {
+                        return dp[i][j];
+                }
                 if(x<0 || y<0 || x>=n || y>=m)continue;
                 if(!vis[x][y]){
                     dp[x][y]=dp[i][j]+(grid[x][y]==1);
