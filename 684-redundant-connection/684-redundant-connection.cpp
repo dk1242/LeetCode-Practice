@@ -29,7 +29,7 @@ public:
         unordered_set<int>cycle;
         dfs(cycleStart, cycle, graph, vis, 1, -1);
         // cout<<1;
-        for(auto it:cycle)cout<<it;
+        // for(auto it:cycle)cout<<it;
         for(int i=n-1;i>=0;i--){
             if(cycle.count(edges[i][0]) && cycle.count(edges[i][1]))
                 return edges[i];
