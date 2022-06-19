@@ -7,13 +7,16 @@ public:
         for(int i=0;i<searchWord.length();i++){
             cur+=searchWord[i];
             vector<string>res;
-            for(int j=0;j<products.size();j++){
+            auto it = std::lower_bound(products.begin(), products.end(), cur);
+            for(int j=0;j<3 && it+j!=products.end();j++){
                 // cout<<products[j].substr(0, cur.length())<<" ";
-                if(cur==products[j].substr(0, cur.length())){
-                    res.push_back(products[j]);
-                }
-                if(res.size()==3)
+                // if(cur==products[j].substr(0, cur.length())){
+                string cand=*(it+j);
+                // cout<<cand<<" "<<products[j]<<"\n";
+                if(cand.find(cur)!=0)
                     break;
+                res.push_back(cand);
+                // }
             }
             ans.push_back(res);
         }
