@@ -3,10 +3,10 @@ public:
     vector<int> runningSum(vector<int>& nums) {
         int n=nums.size();
         vector<int>res(n);
-        long long sum=0;
-        for(int i=0;i<n;i++){
-            sum+=nums[i];
-            res[i]=sum;
+        res[0]=nums[0];
+        for(int i=1;i<n;i++){
+            // sum+=nums[i];
+            res[i]=res[i-1]+nums[i];
         }
         return res;
     }
