@@ -1,19 +1,19 @@
 class Solution {
 public:
     int minSteps(string s, string t) {
-        unordered_map<char, int>mp;
+        int mp[26]={0};
         int n=s.length();
         for(int i=0;i<n;i++){
-            mp[s[i]]++;
+            mp[s[i]-'a']++;
         }
         for(int i=0;i<n;i++){
-            if(mp[t[i]]>0){
-                mp[t[i]]--;
+            if(mp[t[i]-'a']>0){
+                mp[t[i]-'a']--;
             }
         }
         int ans=0;
         for(auto it:mp){
-            ans+=it.second;
+            ans+=it;
         }
         return ans;
     }
