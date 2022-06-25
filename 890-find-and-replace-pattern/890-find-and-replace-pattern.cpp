@@ -4,7 +4,7 @@ public:
         vector<string>ans;
         for(auto s:words){
             int flag1=1, flag2=1;
-            map<char, char>mp;
+            unordered_map<char, char>mp;
             int n=s.length();
             for(int i=0;i<n;i++){
                 if(mp.find(s[i])!=mp.end()){
