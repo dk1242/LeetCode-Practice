@@ -1,7 +1,7 @@
 class Solution {
 public:
     int numSplits(string s) {
-        set<char>st1, st2;
+        unordered_set<char>st1, st2;
         int n=s.length();
         vector<int>left(n,0), right(n,0);
         for(int i=0;i<n;i++){
