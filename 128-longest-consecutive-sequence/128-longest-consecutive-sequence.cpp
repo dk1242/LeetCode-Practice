@@ -12,6 +12,7 @@ public:
                     curr++;
                     len++;
                 }
+                // if(len>1)cout<<it<<" "<<len<<"\n";
                 ans=max(ans, len);
             }
         }
