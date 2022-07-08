@@ -24,9 +24,9 @@ public:
         return dp[idx][count][prev] = minCost;
     }
     int minCost(vector<int>& houses, vector<vector<int>>& cost, int m, int n, int target) {
-        for(int i=0;i<100;i++){
-            for(int j=0;j<100;j++){
-                for(int k=0;k<21;k++){
+        for(int i=0;i<m;i++){
+            for(int j=0;j<m;j++){
+                for(int k=0;k<=n;k++){
                     dp[i][j][k]=-1;
                 }
             }
