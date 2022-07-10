@@ -1,5 +1,6 @@
 class Solution {
 public:
+    
     void count(vector<char>&v, int i, int cur, int &ans, int n){
         if(cur==n){
             ans++;
@@ -11,8 +12,14 @@ public:
     }
     int countVowelStrings(int n) {
         int ans=0;
-        vector<char>v={'a', 'e', 'i', 'o', 'u'};
-        count(v, 0, 0, ans, n);
+        // vector<char>v={'a', 'e', 'i', 'o', 'u'};
+        vector<int>dp(5, 1);
+        while(n-->1){
+            for(int i=3;i>=0;i--){
+                dp[i]+=dp[i+1];
+            }
+        }
+        ans=accumulate(dp.begin(), dp.end(),0);
         return ans;
     }
 };
