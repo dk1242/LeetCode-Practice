@@ -16,7 +16,7 @@ public:
     }
     
     int find(int number) {
-        if(num2ind.find(number)==num2ind.end() || num2ind[number].size()==0)
+        if(num2ind[number].size()==0)
             return -1;
         // set st=num2ind[number];
         // // for(auto it:st)
