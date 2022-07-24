@@ -1,54 +1,39 @@
+struct cmp {
+    bool operator () (pair<int, string> a, pair<int, string> b) const { 
+        if(a.first == b.first) {
+            return a.second > b.second;
+        } else {
+            return a.first < b.first;
+        }
+    }
+};
 class FoodRatings {
 public:
-//     unordered_map<string, set<pair<int, string>>>cousine_rating;
-//     unordered_map<string, string>food_cousine;
-//     unordered_map<string, int>food_rating;
+    unordered_map<string, string> foodToCuisine;
+    unordered_map<string, int> foodToRating;
+    unordered_map<string, set<pair<int, string>, cmp>> mp;
     
     FoodRatings(vector<string>& foods, vector<string>& cuisines, vector<int>& ratings) {
-        for(int i=0;i<foods.size();i++){
-            c[cuisines[i]].insert({-ratings[i], foods[i]});
-            b[foods[i]]=cuisines[i];
-            a[foods[i]]=ratings[i];
-        }    
+        int n = foods.size();
+        for(int i = 0; i < n; i++) {
+            foodToCuisine[foods[i]] = cuisines[i];
+            foodToRating[foods[i]] = ratings[i];
+            mp[cuisines[i]].insert({ratings[i], foods[i]});
+        }
     }
     
     void changeRating(string food, int newRating) {
-        string cousine=b[food];
-        c[cousine].erase({-a[food], food});
-        c[cousine].insert({-newRating, food});
-        a[food]=newRating;
+        int currRating = foodToRating[food];
+        string currCuisine = foodToCuisine[food];
+        
+        mp[currCuisine].erase({currRating, food});
+        mp[currCuisine].insert({newRating, food});
+        foodToRating[food] = newRating;
     }
     
     string highestRated(string cuisine) {
-        return c[cuisine].begin()->second;
+        return mp[cuisine].rbegin() -> second;
     }
-    map<string,int>a;
-map<string,string>b;
-map<string,set<pair<int,string>>>c;
-// FoodRatings(vector<string>& foods, vector<string>& cuisines, vector<int>& ratings)
-// {
-// int n=foods.size();
-// for(int i=0;i<n;i++)
-// {
-// a[foods[i]]=ratings[i];
-// b[foods[i]]=cuisines[i];
-// c[cuisines[i]].insert({-ratings[i],foods[i]}); 
-// }
-// }
-
-// void changeRating(string food, int newRating) 
-// {
-//     int cp=a[food];
-//     a[food]=newRating;
-//     string cuis=b[food];
-// 	c[cuis].erase(c[cuis].find({-cp,food}));
-//     c[cuis].insert({-newRating,food});
-// }
-
-// string highestRated(string cuisine) {
-//     return c[cuisine].begin()->second;
-    
-// }
 };
 
 /**
