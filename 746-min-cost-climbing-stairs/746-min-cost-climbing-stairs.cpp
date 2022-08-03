@@ -11,6 +11,6 @@ public:
         for(int i=2;i<=n;i++){
             dp[i]=cost[i]+min(dp[i-1], dp[i-2]);
         }
-        return dp[n];
+        return min(dp[n-2], dp[n-1]);
     }
 };
