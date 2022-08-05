@@ -16,11 +16,8 @@ public:
             return NULL;
         }
         TreeNode * root=new TreeNode(preorder[ind++]);
-        
-            root->left=bstFormed(preorder, ind, root->val);
-          
-            root->right=bstFormed(preorder, ind, limit);
-        
+        root->left=bstFormed(preorder, ind, root->val);
+        root->right=bstFormed(preorder, ind, limit);
         return root;
     }
     TreeNode* bstFromPreorder(vector<int>& preorder) {
