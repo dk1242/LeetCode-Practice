@@ -7,26 +7,24 @@ public:
           }
       }
       return true;
-    }
-    void allpart(vector<vector<string>>&all, vector<string>&curr, int start, int n, string s){
-        if(start>=n){
-            all.push_back(curr);
+  }
+    void f(string s, vector<vector<string>>&ans, vector<string>&res, int ind){
+        if(ind==s.length()){
+            ans.push_back(res);
             return;
         }
-        for(int i=start;i<n;i++){
-            // cout<<s.substr(start, i-start+1)<<" ";
-            if(isPalindrome(s, start, i)){
-                curr.push_back(s.substr(start, i-start+1));
-                allpart(all, curr, i+1, n, s);
-                curr.pop_back();
+        for(int i=ind;i<s.length();i++){
+            if(isPalindrome(s, ind, i)){
+                res.push_back(s.substr(ind, i-ind+1));
+                f(s, ans, res, i+1);
+                res.pop_back();
             }
         }
-    }    
+    }
     vector<vector<string>> partition(string s) {
-        int n=s.length();
-        vector<vector<string>> all;
-        vector<string> curr;
-        allpart(all, curr, 0, n, s);
-        return all;
+        vector<vector<string>>ans;
+        vector<string>res;
+        f(s, ans, res, 0);
+        return ans;
     }
 };
