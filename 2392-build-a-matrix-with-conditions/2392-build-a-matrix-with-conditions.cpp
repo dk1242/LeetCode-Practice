@@ -1,7 +1,7 @@
 class Solution {
 public:
     vector<vector<int>> buildMatrix(int k, vector<vector<int>>& rc, vector<vector<int>>& cc) {
-        map<int, vector<int>>g1, g2;
+        unordered_map<int, vector<int>>g1, g2;
         vector<int>indeg1(k, 0), indeg2(k, 0);
         for(int i=0;i<rc.size();i++){
             g1[rc[i][0]-1].push_back(rc[i][1]-1);
@@ -61,7 +61,7 @@ public:
          //    cout<<it<<" ";
         // cout<<"\n@";
         ans.resize(k, vector<int>(k, 0));
-        map<int, vector<int>>mp;
+        unordered_map<int, vector<int>>mp;
         for(int i=0;i<k;i++){
             mp[ord1[i]].push_back(i);
         }
