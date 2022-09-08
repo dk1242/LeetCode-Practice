@@ -22,52 +22,49 @@ public:
     // }
     vector<int> inorderTraversal(TreeNode *root)
     {
-       // vector<int> res;
-    // stack<TreeNode *> st;
+        vector<int>res;
+        stack<TreeNode*>st;
+        TreeNode *cur=root;
+        while(!st.empty() || cur){
+            while(cur){
+                st.push(cur);
+                cur=cur->left;
+            }
+            cur=st.top();
+            st.pop();
+            res.push_back(cur->val);
+            cur=cur->right;
+        }
+        return res;
+    // vector<int> res;
     // TreeNode *curr = root;
-    // // st.push(root);
-    // while (curr || !st.empty())
+    // while (curr)
     // {
-    //     while (curr)
+    //     if (curr->left == NULL)
     //     {
-    //         st.push(curr);
-    //         curr = curr->left;
+    //         res.push_back(curr->val);
+    //         curr = curr->right;
     //     }
-    //     curr = st.top();
-    //     st.pop();
-    //     res.push_back(curr->val);
-    //     curr = curr->right;
+    //     else
+    //     {
+    //         TreeNode *prev = curr->left;
+    //         while (prev->right && prev->right != curr)
+    //         {
+    //             prev = prev->right;
+    //         }
+    //         if (prev->right == NULL)
+    //         {
+    //             prev->right = curr;
+    //             curr = curr->left;
+    //         }
+    //         else
+    //         {
+    //             prev->right = NULL;
+    //             res.push_back(curr->val);
+    //             curr = curr->right;
+    //         }
+    //     }
     // }
     // return res;
-    vector<int> res;
-    TreeNode *curr = root;
-    while (curr)
-    {
-        if (curr->left == NULL)
-        {
-            res.push_back(curr->val);
-            curr = curr->right;
-        }
-        else
-        {
-            TreeNode *prev = curr->left;
-            while (prev->right && prev->right != curr)
-            {
-                prev = prev->right;
-            }
-            if (prev->right == NULL)
-            {
-                prev->right = curr;
-                curr = curr->left;
-            }
-            else
-            {
-                prev->right = NULL;
-                res.push_back(curr->val);
-                curr = curr->right;
-            }
-        }
-    }
-    return res;
     }
 };
