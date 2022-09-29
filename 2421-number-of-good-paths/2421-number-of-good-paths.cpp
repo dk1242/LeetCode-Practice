@@ -48,18 +48,13 @@ public:
                 }
                 vis[i]=1;
             }
-            vector<int>parent;
+            unordered_map<int, int>mp2;
             for(auto i:it.second){
-                parent.push_back(dsu.find(i));
+                mp2[dsu.find(i)]++;
             }
-            sort(parent.begin(), parent.end());
-            for(int j=0;j<parent.size();j++){
-                long long cnt=0;
-                int cur=parent[j];
-                while(j<parent.size() && parent[j]==cur){
-                    j++, cnt++;
-                }
-                j--;
+            // sort(parent.begin(), parent.end());
+            for(auto j:mp2){
+                long long cnt=j.second;
                 ans+=cnt*(cnt-1)/2;
             }
         }
